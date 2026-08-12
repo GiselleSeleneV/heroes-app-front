@@ -45,10 +45,10 @@ export const HomePage = () => {
 
         {/* Tabs */}
         <Tabs value={selectedTab} className="mb-8">
-          <TabsList className="grid w-full grid-cols-4 mb-5 h-auto bg-card border border-slate-200 text-[#0F172A] p-1">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-5 h-auto sm:h-9 gap-1 sm:gap-0 bg-card border border-slate-200 text-[#0F172A] p-1">
             <TabsTrigger
               value="all"
-              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+              className="px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center leading-tight text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "all");
@@ -58,12 +58,15 @@ export const HomePage = () => {
                 })
               }
             >
-              Todos los personajes ({summary?.totalHeroes})
+              <span className="sm:hidden">Todos ({summary?.totalHeroes})</span>
+              <span className="hidden sm:inline">
+                Todos los personajes ({summary?.totalHeroes})
+              </span>
             </TabsTrigger>
 
             <TabsTrigger
               value="favorites"
-              className="flex items-center gap-2 text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+              className="px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center leading-tight text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "favorites");
@@ -75,7 +78,7 @@ export const HomePage = () => {
             </TabsTrigger>
             <TabsTrigger
               value="heroes"
-              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+              className="px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center leading-tight text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "heroes");
@@ -89,7 +92,7 @@ export const HomePage = () => {
             </TabsTrigger>
             <TabsTrigger
               value="villains"
-              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+              className="px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center leading-tight text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "villains");

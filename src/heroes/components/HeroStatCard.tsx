@@ -12,7 +12,7 @@ export const HeroStatCard = ({ title, icon, children }: Props) => {
   return (
     <Card className="text-[#0F172A]">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-[#0F172A]">
+        <CardTitle className="text-base sm:text-lg font-medium text-[#0F172A]">
           {title}
         </CardTitle>
         {icon}

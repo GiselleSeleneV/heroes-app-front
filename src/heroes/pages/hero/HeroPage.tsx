@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CustomLoading } from "@/components/custom/CustomLoading";
 import { getHeroAction } from "@/heroes/actions/get-hero";
 import { useQuery } from "@tanstack/react-query";
 import { Shield, Zap, Brain, Gauge, Users, Star, Award } from "lucide-react";
@@ -21,7 +22,7 @@ export const HeroPage = () => {
   }
 
   if (!superheroData) {
-    return <h3>Cargando...</h3>;
+    return <CustomLoading fullPage label="Cargando héroe" />;
   }
 
   const totalPower =
@@ -102,8 +103,18 @@ export const HeroPage = () => {
                 </Badge>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-bold mb-2">
-                {superheroData.alias}
+              <h1 className="text-4xl md:text-6xl font-bold mb-2 flex flex-wrap justify-center md:justify-start">
+                {superheroData.alias.split("").map((char, index) => (
+                  <span
+                    key={`${superheroData.alias}-${index}`}
+                    className="inline-block title-drop-letter text-white"
+                    style={{
+                      animationDelay: `${index * 0.05}s`,
+                    }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
               </h1>
               <p className="text-xl text-blue-200 mb-4">{superheroData.name}</p>
               <p className="text-lg text-gray-300 max-w-2xl">
@@ -138,22 +149,34 @@ export const HeroPage = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="stats" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
-            <TabsTrigger value="stats" className="flex items-center gap-2">
-              <Gauge className="w-4 h-4" />
-              Estadísticas
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8 h-auto sm:h-9 gap-1 sm:gap-0 bg-card border border-slate-200 text-[#0F172A] p-1">
+            <TabsTrigger
+              value="stats"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+            >
+              <Gauge className="w-4 h-4 shrink-0" />
+              <span>Estadísticas</span>
             </TabsTrigger>
-            <TabsTrigger value="powers" className="flex items-center gap-2">
-              <Zap className="w-4 h-4" />
-              Poderes
+            <TabsTrigger
+              value="powers"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+            >
+              <Zap className="w-4 h-4 shrink-0" />
+              <span>Poderes</span>
             </TabsTrigger>
-            <TabsTrigger value="team" className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              Equipo
+            <TabsTrigger
+              value="team"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+            >
+              <Users className="w-4 h-4 shrink-0" />
+              <span>Equipo</span>
             </TabsTrigger>
-            <TabsTrigger value="info" className="flex items-center gap-2">
-              <Award className="w-4 h-4" />
-              Información
+            <TabsTrigger
+              value="info"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-2.5 sm:py-1 text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap text-center text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
+            >
+              <Award className="w-4 h-4 shrink-0" />
+              <span>Información</span>
             </TabsTrigger>
           </TabsList>
 
@@ -312,30 +335,58 @@ export const HeroPage = () => {
           </TabsContent>
 
           <TabsContent value="powers">
-            <Card>
+            <Card className="text-[#0F172A]">
               <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-[#0F172A]">
-                  <Zap className="w-6 h-6 text-yellow-500" />
+                <CardTitle className="flex items-center gap-2 text-[#0F172A]">
+                  <Zap className="w-6 h-6 text-[#f97316]" />
                   Superpoderes
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {superheroData.powers.map((power, index) => (
-                    <div
-                      key={index}
-                      className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="bg-blue-500 p-2 rounded-full">
-                          <Zap className="w-4 h-4 text-white" />
+                  {superheroData.powers.map((power, index) => {
+                    const accents = [
+                      {
+                        bg: "from-orange-50 to-orange-100/80",
+                        border: "border-orange-200",
+                        icon: "bg-[#f97316]",
+                      },
+                      {
+                        bg: "from-blue-50 to-blue-100/80",
+                        border: "border-blue-200",
+                        icon: "bg-[#3b82f6]",
+                      },
+                      {
+                        bg: "from-green-50 to-green-100/80",
+                        border: "border-green-200",
+                        icon: "bg-[#22c55e]",
+                      },
+                      {
+                        bg: "from-purple-50 to-purple-100/80",
+                        border: "border-purple-200",
+                        icon: "bg-[#a855f7]",
+                      },
+                    ];
+                    const accent = accents[index % accents.length];
+
+                    return (
+                      <div
+                        key={index}
+                        className={`bg-gradient-to-r ${accent.bg} p-4 rounded-xl border ${accent.border} shadow-sm`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`${accent.icon} p-2 rounded-full shrink-0`}
+                          >
+                            <Zap className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-medium text-[#0F172A]">
+                            {power}
+                          </span>
                         </div>
-                        <span className="font-medium text-blue-900">
-                          {power}
-                        </span>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
@@ -344,7 +395,7 @@ export const HeroPage = () => {
           <TabsContent value="team">
             <Card>
               <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-[#0F172A]">
+                <CardTitle className="flex items-center gap-2 text-[#0F172A]">
                   <Users className="w-6 h-6 text-green-500" />
                   Afiliación de Equipo
                 </CardTitle>
@@ -423,7 +474,9 @@ export const HeroPage = () => {
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-[#0F172A]/70">Primera Aparición:</span>
+                    <span className="text-[#0F172A]/70">
+                      Primera Aparición:
+                    </span>
                     <span className="font-semibold text-[#0F172A]">
                       {superheroData.firstAppearance}
                     </span>
