@@ -20,7 +20,10 @@ export const CustomMenu = () => {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={cn(isActive("/") && "bg-slate-200", "p-2 rounded-md")}
+            className={cn(
+              "p-2 rounded-md text-slate-200 hover:text-white hover:bg-white/10 transition-colors",
+              isActive("/") && "bg-white/15 text-white",
+            )}
           >
             <Link to="/">Inicio</Link>
           </NavigationMenuLink>
@@ -31,8 +34,8 @@ export const CustomMenu = () => {
           <NavigationMenuLink
             asChild
             className={cn(
-              isActive("/search") && "bg-slate-200",
-              "p-2 rounded-md",
+              "p-2 rounded-md text-slate-200 hover:text-white hover:bg-white/10 transition-colors",
+              isActive("/search") && "bg-white/15 text-white",
             )}
           >
             <Link to="/search">Buscar superhéroes</Link>

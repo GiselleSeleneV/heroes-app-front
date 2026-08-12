@@ -45,9 +45,10 @@ export const HomePage = () => {
 
         {/* Tabs */}
         <Tabs value={selectedTab} className="mb-8">
-          <TabsList className="grid w-full grid-cols-4 mb-5">
+          <TabsList className="grid w-full grid-cols-4 mb-5 h-auto bg-card border border-slate-200 text-[#0F172A] p-1">
             <TabsTrigger
               value="all"
+              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "all");
@@ -62,7 +63,7 @@ export const HomePage = () => {
 
             <TabsTrigger
               value="favorites"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "favorites");
@@ -74,6 +75,7 @@ export const HomePage = () => {
             </TabsTrigger>
             <TabsTrigger
               value="heroes"
+              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "heroes");
@@ -87,6 +89,7 @@ export const HomePage = () => {
             </TabsTrigger>
             <TabsTrigger
               value="villains"
+              className="text-[#0F172A]/70 data-[state=active]:bg-[#0F172A] data-[state=active]:text-white"
               onClick={() =>
                 setSearchParams((prev) => {
                   prev.set("tab", "villains");
@@ -100,24 +103,28 @@ export const HomePage = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="all">
+          <TabsContent value="all" className="bg-[#0F172A]">
             {/* Mostrar todos los personajes */}
+            <h1 className="text-white text-2xl font-semibold mb-4">
+              Todos los personajes
+            </h1>
             <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
 
-          <TabsContent value="favorites">
+          <TabsContent value="favorites" className="bg-[#0F172A]">
             {/* Mostrar todos los personajes favoritos */}
+            <h1 className="text-white text-2xl font-semibold mb-4">Favoritos</h1>
             <HeroGrid heroes={favorites} />
           </TabsContent>
 
-          <TabsContent value="heroes">
+          <TabsContent value="heroes" className="bg-[#0F172A]">
             {/* Mostrar todos los héroes */}
-            <h1>Héroes</h1>
+            <h1 className="text-white text-2xl font-semibold mb-4">Héroes</h1>
             <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
-          <TabsContent value="villains">
+          <TabsContent value="villains" className="bg-[#0F172A]">
             {/* Mostrar todos los Villanos */}
-            <h1>Villanos</h1>
+            <h1 className="text-white text-2xl font-semibold mb-4">Villanos</h1>
             <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
         </Tabs>

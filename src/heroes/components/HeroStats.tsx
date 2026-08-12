@@ -12,16 +12,18 @@ export const HeroStats = () => {
   const { favoriteCount } = use(FavoriteHeroContext);
 
   if (!summary) {
-    return <div>Cargando...</div>;
+    return <div className="text-white mb-8">Cargando...</div>;
   }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
       <HeroStatCard
         title="Total de personajes"
-        icon={<Users className="h-4 w-4 text-muted-foreground" />}
+        icon={<Users className="h-4 w-4 text-[#0F172A]" />}
       >
-        <div className="text-2xl font-bold">{summary?.totalHeroes}</div>
+        <div className="text-2xl font-bold text-[#0F172A]">
+          {summary?.totalHeroes}
+        </div>
         <div className="flex gap-1 mt-2">
           <Badge variant="secondary" className="text-xs">
             {summary?.heroCount} Héroes
@@ -34,30 +36,34 @@ export const HeroStats = () => {
 
       <HeroStatCard
         title="Favoritos"
-        icon={<Heart className="h-4 w-4 text-muted-foreground" />}
+        icon={<Heart className="h-4 w-4 text-[#0F172A]" />}
       >
-        <div className="text-2xl font-bold text-red-600">{favoriteCount}</div>
-        <p className="text-xs text-muted-foreground">
+        <div className="text-2xl font-bold text-[#0F172A]">{favoriteCount}</div>
+        <p className="text-xs text-[#0F172A]/70">
           {((favoriteCount / summary.totalHeroes) * 100).toFixed(2)}% del total
         </p>
       </HeroStatCard>
 
       <HeroStatCard
         title="Fuerza"
-        icon={<Zap className="h-4 w-4 text-muted-foreground" />}
+        icon={<Zap className="h-4 w-4 text-[#0F172A]" />}
       >
-        <div className="text-2xl font-bold">{summary?.strongestHero.alias}</div>
-        <p className="text-xs text-muted-foreground">
+        <div className="text-2xl font-bold text-[#0F172A]">
+          {summary?.strongestHero.alias}
+        </div>
+        <p className="text-xs text-[#0F172A]/70">
           Fuerza: {summary?.strongestHero.strength}/10
         </p>
       </HeroStatCard>
 
       <HeroStatCard
         title="Inteligencia"
-        icon={<Heart className="h-4 w-4 text-muted-foreground" />}
+        icon={<Heart className="h-4 w-4 text-[#0F172A]" />}
       >
-        <div className="text-2xl font-bold">{summary?.smartestHero.alias}</div>
-        <p className="text-xs text-muted-foreground">
+        <div className="text-2xl font-bold text-[#0F172A]">
+          {summary?.smartestHero.alias}
+        </div>
+        <p className="text-xs text-[#0F172A]/70">
           Inteligencia: {summary?.smartestHero.intelligence}/10
         </p>
       </HeroStatCard>

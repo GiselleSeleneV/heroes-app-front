@@ -4,6 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import { Link } from "react-router";
@@ -21,32 +22,40 @@ interface Props {
 export const CustomBreadcrumbs = ({ currentPage, breadcrumbs = [] }: Props) => {
   return (
     <Breadcrumb className="my-5">
-      <BreadcrumbList>
+      <BreadcrumbList className="text-slate-300">
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
+          <BreadcrumbLink
+            asChild
+            className="text-slate-300 hover:!text-white transition-colors"
+          >
             <Link to="/">Inicio</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         {breadcrumbs.map((crumb) => (
-          <div className="flex items-center">
+          <div className="flex items-center" key={crumb.to}>
             <BreadcrumbItem>
-              <BreadcrumbSeparator>
+              <BreadcrumbSeparator className="text-slate-500">
                 <SlashIcon />
               </BreadcrumbSeparator>
-              <BreadcrumbLink asChild>
+              <BreadcrumbLink
+                asChild
+                className="text-slate-300 hover:!text-white transition-colors"
+              >
                 <Link to={crumb.to}>{crumb.label}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </div>
         ))}
 
-        <BreadcrumbSeparator>
+        <BreadcrumbSeparator className="text-slate-500">
           <SlashIcon />
         </BreadcrumbSeparator>
 
         <BreadcrumbItem>
-          <BreadcrumbLink className="text-black">{currentPage}</BreadcrumbLink>
+          <BreadcrumbPage className="text-white font-medium">
+            {currentPage}
+          </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

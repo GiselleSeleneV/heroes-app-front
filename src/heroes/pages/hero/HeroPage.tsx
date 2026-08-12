@@ -58,7 +58,7 @@ export const HeroPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-transparent">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-6 py-12">
@@ -167,7 +167,9 @@ export const HeroPage = () => {
                       <Zap className="w-8 h-8 text-red-600" />
                     </div>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Fuerza</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-[#0F172A]">
+                    Fuerza
+                  </h3>
                   <div className="text-3xl font-bold text-red-600 mb-2">
                     {superheroData.strength}
                   </div>
@@ -186,7 +188,9 @@ export const HeroPage = () => {
                       <Brain className="w-8 h-8 text-purple-600" />
                     </div>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Inteligencia</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-[#0F172A]">
+                    Inteligencia
+                  </h3>
                   <div className="text-3xl font-bold text-purple-600 mb-2">
                     {superheroData.intelligence}
                   </div>
@@ -205,7 +209,9 @@ export const HeroPage = () => {
                       <Gauge className="w-8 h-8 text-yellow-600" />
                     </div>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Velocidad</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-[#0F172A]">
+                    Velocidad
+                  </h3>
                   <div className="text-3xl font-bold text-yellow-600 mb-2">
                     {superheroData.speed}
                   </div>
@@ -221,7 +227,9 @@ export const HeroPage = () => {
                       <Shield className="w-8 h-8 text-green-600" />
                     </div>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Resistencia</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-[#0F172A]">
+                    Resistencia
+                  </h3>
                   <div className="text-3xl font-bold text-green-600 mb-2">
                     {superheroData.durability}
                   </div>
@@ -236,12 +244,16 @@ export const HeroPage = () => {
             {/* Power Comparison Chart */}
             <Card>
               <CardHeader>
-                <CardTitle>Comparación de Habilidades</CardTitle>
+                <CardTitle className="text-[#0F172A]">
+                  Comparación de Habilidades
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-24 text-sm font-medium">Fuerza</div>
+                    <div className="w-24 text-sm font-medium text-[#0F172A]">
+                      Fuerza
+                    </div>
                     <div className="flex-1">
                       <Progress
                         value={superheroData.strength * 10}
@@ -253,7 +265,9 @@ export const HeroPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-24 text-sm font-medium">Inteligencia</div>
+                    <div className="w-24 text-sm font-medium text-[#0F172A]">
+                      Inteligencia
+                    </div>
                     <div className="flex-1">
                       <Progress
                         value={superheroData.intelligence * 10}
@@ -265,7 +279,9 @@ export const HeroPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-24 text-sm font-medium">Velocidad</div>
+                    <div className="w-24 text-sm font-medium text-[#0F172A]">
+                      Velocidad
+                    </div>
                     <div className="flex-1">
                       <Progress
                         value={superheroData.speed * 10}
@@ -277,7 +293,9 @@ export const HeroPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-24 text-sm font-medium">Resistencia</div>
+                    <div className="w-24 text-sm font-medium text-[#0F172A]">
+                      Resistencia
+                    </div>
                     <div className="flex-1">
                       <Progress
                         value={superheroData.durability * 10}
@@ -296,7 +314,7 @@ export const HeroPage = () => {
           <TabsContent value="powers">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-[#0F172A]">
                   <Zap className="w-6 h-6 text-yellow-500" />
                   Superpoderes
                 </CardTitle>
@@ -326,7 +344,7 @@ export const HeroPage = () => {
           <TabsContent value="team">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-[#0F172A]">
                   <Users className="w-6 h-6 text-green-500" />
                   Afiliación de Equipo
                 </CardTitle>
@@ -339,7 +357,7 @@ export const HeroPage = () => {
                   <h3 className="text-2xl font-bold text-green-700 mb-2">
                     {superheroData.team}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-[#0F172A]/70">
                     Miembro activo del equipo de superhéroes más poderoso
                   </p>
                 </div>
@@ -351,19 +369,25 @@ export const HeroPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Detalles Personales</CardTitle>
+                  <CardTitle className="text-[#0F172A]">
+                    Detalles Personales
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Nombre Real:</span>
-                    <span className="font-semibold">{superheroData.name}</span>
+                    <span className="text-[#0F172A]/70">Nombre Real:</span>
+                    <span className="font-semibold text-[#0F172A]">
+                      {superheroData.name}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Alias:</span>
-                    <span className="font-semibold">{superheroData.alias}</span>
+                    <span className="text-[#0F172A]/70">Alias:</span>
+                    <span className="font-semibold text-[#0F172A]">
+                      {superheroData.alias}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Categoría:</span>
+                    <span className="text-[#0F172A]/70">Categoría:</span>
                     <Badge
                       className={`${getCategoryColor(
                         superheroData.category,
@@ -373,7 +397,7 @@ export const HeroPage = () => {
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-600">Estado:</span>
+                    <span className="text-[#0F172A]/70">Estado:</span>
                     <Badge
                       className={`${getStatusColor(
                         superheroData.status,
@@ -387,24 +411,26 @@ export const HeroPage = () => {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Información del Universo</CardTitle>
+                  <CardTitle className="text-[#0F172A]">
+                    Información del Universo
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Universo:</span>
-                    <span className="font-semibold">
+                    <span className="text-[#0F172A]/70">Universo:</span>
+                    <span className="font-semibold text-[#0F172A]">
                       {superheroData.universe}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Primera Aparición:</span>
-                    <span className="font-semibold">
+                    <span className="text-[#0F172A]/70">Primera Aparición:</span>
+                    <span className="font-semibold text-[#0F172A]">
                       {superheroData.firstAppearance}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-600">Años Activo:</span>
-                    <span className="font-semibold">
+                    <span className="text-[#0F172A]/70">Años Activo:</span>
+                    <span className="font-semibold text-[#0F172A]">
                       {new Date().getFullYear() -
                         Number.parseInt(superheroData.firstAppearance)}{" "}
                       años

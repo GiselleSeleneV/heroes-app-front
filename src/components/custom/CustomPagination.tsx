@@ -26,6 +26,7 @@ export const CustomPagination = ({ totalPages }: Props) => {
         size="sm"
         disabled={page === 1}
         onClick={() => handlePageChange(page - 1)}
+        className="border-slate-600 bg-slate-800/50 text-slate-200 hover:bg-slate-700 hover:text-white disabled:border-slate-700 disabled:text-slate-500"
       >
         <ChevronLeft className="h-4 w-4" />
         Anterior
@@ -37,6 +38,11 @@ export const CustomPagination = ({ totalPages }: Props) => {
           variant={page === index + 1 ? "default" : "outline"}
           size="sm"
           onClick={() => handlePageChange(index + 1)}
+          className={
+            page === index + 1
+              ? "bg-slate-100 text-slate-900 hover:bg-white"
+              : "border-slate-600 bg-slate-800/50 text-slate-200 hover:bg-slate-700 hover:text-white"
+          }
         >
           {index + 1}
         </Button>
@@ -47,6 +53,7 @@ export const CustomPagination = ({ totalPages }: Props) => {
         size="sm"
         disabled={page === totalPages}
         onClick={() => handlePageChange(page + 1)}
+        className="border-slate-600 bg-slate-800/50 text-slate-200 hover:bg-slate-700 hover:text-white disabled:border-slate-700 disabled:text-slate-500"
       >
         Siguiente
         <ChevronRight className="h-4 w-4" />
