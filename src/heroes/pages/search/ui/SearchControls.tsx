@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Filter, SortAsc, Grid, Plus } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import { useRef } from "react";
 import { useSearchParams } from "react-router";
 import { Slider } from "@/components/ui/slider";

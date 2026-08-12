@@ -1,12 +1,11 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import type { Hero } from "../../../types/hero";
 import { Heart, Users, Zap } from "lucide-react";
 import { HeroStatCard } from "./HeroStatCard";
 import { useHeroSummary } from "../hooks/useHeroSummary";
 import { FavoriteHeroContext } from "../context/favoriteHeroContex";
-import { use, useMemo } from "react";
+import { use } from "react";
 
 export const HeroStats = () => {
   const { data: summary } = useHeroSummary();

@@ -29,8 +29,6 @@ export const HomePage = () => {
   const { data: heroesResponse } = usePaginatedHero(+page, +limit, category);
   const { data: summary } = useHeroSummary();
 
-  const heroes = heroesResponse?.heroes ?? [];
-
   return (
     <>
       <>
