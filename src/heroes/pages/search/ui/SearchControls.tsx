@@ -9,6 +9,35 @@ import {
   AccordionItem,
   AccordionContent,
 } from "@/components/ui/accordion";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const TEAMS = [
+  "Liga de la Justicia",
+  "Vengadores",
+  "X-Men",
+  "Batfamilia",
+  "Jóvenes Titanes",
+  "Solo",
+  "Suicide Squad",
+];
+
+const CATEGORIES = [
+  { value: "Hero", label: "Héroe" },
+  { value: "Villain", label: "Villano" },
+];
+
+const UNIVERSES = ["DC", "Marvel"];
+
+const STATUSES = [
+  { value: "Active", label: "Activo" },
+  { value: "Deceased", label: "Fallecido" },
+];
 
 export const SearchControls = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -16,11 +45,15 @@ export const SearchControls = () => {
 
   const activeAccordion = searchParams.get("active-accordion") ?? "";
   const selectedStrength = Number(searchParams.get("strength") ?? "0");
+  const selectedTeam = searchParams.get("team") ?? "all";
+  const selectedCategory = searchParams.get("category") ?? "all";
+  const selectedUniverse = searchParams.get("universe") ?? "all";
+  const selectedStatus = searchParams.get("status") ?? "all";
 
   const setQueryParam = (name: string, value: string) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (value) {
+      if (value && value !== "all") {
         next.set(name, value);
       } else {
         next.delete(name);
@@ -109,27 +142,82 @@ export const SearchControls = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Equipo</label>
-                  <div className="h-10 w-full rounded-md border border-input bg-background mt-2 px-3 py-2 text-sm">
-                    Todos los equipos
-                  </div>
+                  <Select
+                    value={selectedTeam}
+                    onValueChange={(value) => setQueryParam("team", value)}
+                  >
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue placeholder="Todos los equipos" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todos los equipos</SelectItem>
+                      {TEAMS.map((team) => (
+                        <SelectItem key={team} value={team}>
+                          {team}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Categoría</label>
-                  <div className="h-10 w-full rounded-md border border-input bg-background mt-2 px-3 py-2 text-sm">
-                    Todas las categorías
-                  </div>
+                  <Select
+                    value={selectedCategory}
+                    onValueChange={(value) => setQueryParam("category", value)}
+                  >
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue placeholder="Todas las categorías" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todas las categorías</SelectItem>
+                      {CATEGORIES.map((category) => (
+                        <SelectItem key={category.value} value={category.value}>
+                          {category.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Universo</label>
-                  <div className="h-10 w-full rounded-md border border-input bg-background mt-2 px-3 py-2 text-sm">
-                    Todos los universos
-                  </div>
+                  <Select
+                    value={selectedUniverse}
+                    onValueChange={(value) => setQueryParam("universe", value)}
+                  >
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue placeholder="Todos los universos" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todos los universos</SelectItem>
+                      {UNIVERSES.map((universe) => (
+                        <SelectItem key={universe} value={universe}>
+                          {universe}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Estado</label>
-                  <div className="h-10 w-full rounded-md border border-input bg-background mt-2 px-3 py-2 text-sm">
-                    Todos los estados
-                  </div>
+                  <Select
+                    value={selectedStatus}
+                    onValueChange={(value) => setQueryParam("status", value)}
+                  >
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue placeholder="Todos los estados" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todos los estados</SelectItem>
+                      {STATUSES.map((status) => (
+                        <SelectItem key={status.value} value={status.value}>
+                          {status.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <div className="mt-4">
@@ -141,7 +229,10 @@ export const SearchControls = () => {
                   className="mt-2"
                   defaultValue={[selectedStrength]}
                   onValueChange={(value) =>
-                    setQueryParam("strength", value[0].toString())
+                    setQueryParam(
+                      "strength",
+                      value[0] === 0 ? "" : value[0].toString(),
+                    )
                   }
                   max={10}
                   step={1}
